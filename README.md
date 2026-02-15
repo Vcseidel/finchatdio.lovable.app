@@ -1,67 +1,100 @@
-# 💸 App de Finanças Pessoais do Venilton com Vibe Coding
+# 💸 App de Finanças Pessoais do Victor com Vibe Coding
 
-Este projeto foi desenvolvido como um Desafio de Projeto da DIO de Vibe Coding utilizando o Lovable e o Copilot Web. A proposta é criar um aplicativo de organização financeira pessoal baseado em interações em linguagem natural.
+Este projeto foi desenvolvido como um Desafio de Projeto da DIO de Vibe Coding utilizando o Lovable e o Gemini da google. A proposta é criar um aplicativo de organização financeira pessoal baseado em interações em linguagem natural.
 
 ---
 
-## 📝 PRD Refinado no Copilot Web
+## 📝 PRD Refinado no Gemini
 
 ```markdown
-# PRD - App de Organização Financeira com Conversa Natural
+# PRD - FinChat: Assistente Financeiro e Investimentos
 
-## Visão Geral
-Criar um aplicativo de organização de finanças pessoais que funcione por meio de conversas em linguagem natural.  
-O objetivo é tornar o controle financeiro mais intuitivo, acessível e livre de burocracias como planilhas ou formulários complexos.
+## 1. Visao Geral
+O FinChat e um aplicativo de gestao financeira pessoal e educacao em investimentos baseado em uma interface de chat (Chat-First). O objetivo e permitir que usuarios iniciantes organizem suas financas e aprendam sobre investimentos atraves de linguagem natural, eliminando a barreira de planilhas complexas.
 
-## Problema a Resolver
-Muitas pessoas abandonam o controle financeiro por acharem os aplicativos atuais complicados, exigindo entradas manuais e oferecendo pouca personalização.  
-Queremos resolver isso com uma experiência conversacional fluida e recomendações automáticas que se adaptam ao perfil do usuário.
+## 2. Publico-Alvo
+Pessoas que desejam iniciar o controle financeiro e entrar no mundo dos investimentos, mas sentem-se intimidadas por termos tecnicos ou interfaces saturadas de informacao.
 
-## Público-Alvo
-Pessoas que desejam começar a organizar suas finanças de forma prática e sem complicações — especialmente iniciantes que não têm familiaridade com apps financeiros tradicionais.
+## 3. Principios de Design Universal
+- Simplicidade: Interface limpa com foco na conversa.
+- Acessibilidade: Navegacao via teclado, suporte a leitores de tela e alto contraste.
+- Legibilidade: Fontes grandes e espacamento adequado.
+- Feedback: Confirmacoes claras para cada acao realizada pelo usuario.
 
-## Funcionalidades-Chave
-1. Registro de gastos via chat: O usuário descreve seus gastos em linguagem natural, como “gastei R$ 30 no mercado”.
-2. Classificação automática de transações: O app identifica e categoriza os gastos com base no texto.
-3. Definição e acompanhamento de metas financeiras: O usuário pode criar metas como “economizar R$ 500 até o fim do mês”.
-4. Dicas personalizadas do Agente Financeiro: Um assistente virtual que sugere formas de economizar com base nos hábitos do usuário.
-5. Relatórios simples e personalizados: Visualizações claras dos gastos, metas e progresso, adaptadas ao estilo do usuário.
+## 4. Funcionalidades de Conversa (NLP)
+- Registro de Gastos: O usuario digita frases como "Gastei 50 reais em almoco" e o sistema categoriza como Alimentacao.
+- Registro de Investimentos: O usuario digita "Investi 200 reais em Tesouro Selic" e o sistema move o valor para a carteira de ativos.
+- Consulta de Saldo: O usuario pergunta "Quanto eu tenho?" e o sistema retorna o saldo em conta e o total investido.
 
-## Princípio de Design Universal
-A solução será construída com base em Design Universal, garantindo que o aplicativo ofereça uma experiência acessível, intuitiva e inclusiva para o maior número possível de pessoas — independentemente de idade, nível de alfabetização digital, limitações físicas ou cognitivas.  
-Isso inclui:
-- Interface clara e legível
-- Navegação simples e sem sobrecarga de informações
-- Compatibilidade com leitores de tela e comandos por voz
-- Feedbacks visuais e auditivos para facilitar o uso
+## 5. Modulos de Investimento (Educativo e Gestao)
+O sistema deve gerenciar e explicar as seguintes categorias de ativos:
 
-## Entregável da IA
-Gerar um plano de MVP contendo:
-- As principais telas (chat, metas, relatórios)
-- Recursos técnicos necessários (NLP, categorização automática, motor de recomendações)
-- Estratégia de validação inicial com usuários reais
-- Linguagem acessível e tom educativo, em português
-- Aplicação dos princípios de Design Universal desde o protótipo
+- Renda Fixa: Emprestimos para bancos ou governo (Ex: CDB, Tesouro Direto). Foco em seguranca.
+- Renda Variavel: Acoes de empresas. Foco em crescimento de longo prazo, com maior risco.
+- Fundos Imobiliarios (FIIs): Investimento em imoveis que gera renda mensal (dividendos).
+- ETFs (Fundos de Indice): Cestas de ativos que replicam indices (Ex: BOVA11, IVVB11).
+- Reserva de Valor: Ativos para protecao contra inflacao ou crises (Ex: Ouro, Bitcoin).
+
+## 6. Componentes de Interface (UI)
+- Janela de Chat: Area principal de interacao.
+- Dashboard de Patrimonio: Grafico simples mostrando a divisao entre Saldo Disponivel e Total Investido.
+- Glossario de Ativos: Cards informativos que explicam o conceito de cada tipo de investimento ao clicar.
+
+## 7. Estrutura de Dados Sugerida
+O estado da aplicacao deve seguir esta estrutura base:
+
+{
+  "conta": {
+    "saldo_disponivel": 0.0,
+    "total_investido": 0.0
+  },
+  "transacoes": [
+    { "id": "uuid", "tipo": "despesa", "valor": 0.0, "categoria": "string", "data": "iso-date" }
+  ],
+  "investimentos": [
+    { "id": "uuid", "classe": "renda_fixa", "nome": "string", "valor": 0.0 }
+  ]
+}
+
+## 8. Requisitos Tecnicos para o MVP
+- Framework: React com Tailwind CSS.
+- Biblioteca de Componentes: Shadcn/UI (Acessivel).
+- Graficos: Recharts.
+- Persistencia: LocalStorage para armazenamento local no navegador.
+- Logica de Processamento: Analise de strings via Regex para identificar valores, categorias e tipos de ativos.
+
+## 9. Criterios de Aceite
+- O usuario deve conseguir registrar uma despesa em menos de 5 segundos via chat.
+- O sistema deve diferenciar visualmente o que e gasto do que e investimento.
+- O Glossario deve exibir definicoes didaticas para todas as 5 categorias de investimento citadas.
+- A interface deve ser totalmente responsiva para dispositivos moveis.
+
+##10. Pontos de atenção:
+
+Gere o código inicial deste projeto usando React e Tailwind. Comece criando a tela de Chat e a lógica de processamento de texto.
+
+Para este MVP, NÃO conecte em APIs de bolsa de valores externas. Trate os investimentos como valores estáticos inseridos pelo usuário. O foco é a interface educativa e a categorização via chat, não a cotação em tempo real.
 ```
 
 ---
 
 ## 💬 Interações com o Lovable
 
-> Crie um App de Finanças Pessoais com base no seguinte PRD (Product Requirements Document): {PRD}
+> Olá Lovable, crie uma aplicação de finanças pessoais seguindo o PRD(Product Requirement Document) a seguir: {PRD}
 
-> Tentei criar uma meta chamada Reserva de Emergencia, mas ela não apareceu no componente. A impressão que tive foi que apenas o Assistente Financeiro a reconheceu, poderia verificar? Além disso, onde vejo os gráficos e extrato?
+> Gostei da aplicação gostaria de propor algumas alterações, poderia incluir no dashboard um campo para despesas, além disso, gostaria de incluir um modulo de rastreio de investimentos. Além disso colocar os conceitos de investimento para serem respondidos no chat
 
-> Sim (Quer que eu adicione uma tela de relatórios com gráficos e extrato detalhado das transações?)
+
 
 ---
 
 ## 🎯 Resultado Final
 
-Acesse o protótipo funcional no Lovable:  
-**[conversa-fin-amigo.lovable.app](https://conversa-fin-amigo.lovable.app/)**
+Acesse o protótipo funcional no Lovable:  https://finchatdio.lovable.app/
 
-<img width="1920" height="945" alt="image" src="https://github.com/user-attachments/assets/88ef611d-970e-4377-918a-918714311218" />
+
+<img width="698" height="866" alt="image" src="https://github.com/user-attachments/assets/6d71b8d6-7b5a-44bf-9dd0-a21a3233c5eb" />
+
 
 ---
 
@@ -71,22 +104,21 @@ Acesse o protótipo funcional no Lovable:
 - Exibe um panorama claro das finanças pessoais:
   - **Receitas**: Total de ganhos registrados
   - **Despesas**: Total de gastos
-  - **Saldo**: Diferença entre receitas e despesas
+  - **Investimento**: total investido
+  - **Patrimonio**: Diferença entre receitas e despesas
 - Interface simples e direta para facilitar a compreensão
 
 ### 2. Assistente Financeiro
-- Personagem conversacional que interage com o usuário
-- Incentiva a conexão de contas e cartões para uma visão completa das finanças
-- Oferece suporte emocional e motivacional
+- Interage com o usuário para inlusão de valores
 
 ### 3. Registro de Transações via Chat
 - Campo de entrada para o usuário digitar mensagens em linguagem natural
 - Permite registrar gastos e interagir com o assistente de forma fluida
 
 ### 4. Metas Financeiras
-- Área dedicada à criação e acompanhamento de objetivos financeiros
-- Sugestão proativa para o usuário definir metas
-- Botão de ação para adicionar novas metas
+- Área dedicada à investimentos
+- Glossario de investimentos para educação geral na hora de investir
+- demarcação de despesas gerais
 
 ### 5. Relatórios Personalizados
 - Visualizações simples e adaptadas ao estilo do usuário
@@ -104,10 +136,10 @@ Acesse o protótipo funcional no Lovable:
 ## 🧠 Reflexão
 
 ### O que funcionou bem?  
-O refinamento do PRD previamente feito no Copilot ajudou muito, pois os créditos do Lovable acabaram em apenas 3 interações.
+O refinamento via Gemini Pro, os pontos de atenção demarcados 
 
 ### O que não funcionou como o esperado?  
-Esperava poder interagir mais vezes gratuitamente com o Lovable, mas as interações feitas já foram de grande valia para aprender mais sobre Vibe Coding.
+Não diferenciei os modulos de despesa
 
 ### O que aprendi sobre conversar com IAs?  
-Aprendi que é basicamente igual a conversar com uma pessoa: quanto mais detalhes e clareza você dá, melhor é a interação.
+Detalhes devem ser claros e bem expostos
